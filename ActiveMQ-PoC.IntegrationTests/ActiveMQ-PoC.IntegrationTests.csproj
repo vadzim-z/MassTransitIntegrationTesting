@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.*" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -24,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActiveMQ-PoC.WebApp\ActiveMQ-PoC.WebApp.csproj" />
+    <ProjectReference Include="..\ActiveMQ-PoC.ConsumerA\ActiveMQ-PoC.ConsumerA.csproj" />
   </ItemGroup>
 
 </Project>

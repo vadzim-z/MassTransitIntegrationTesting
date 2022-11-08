@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
@@ -10,5 +11,6 @@ public class ApiWebApplicationFactory : WebApplicationFactory<Program>
     {
         builder.ConfigureAppConfiguration(config => { });
         builder.ConfigureTestServices(services => { });
+        builder.ConfigureServices(svcs => svcs.AddMassTransitTestHarness());
     }
 }
