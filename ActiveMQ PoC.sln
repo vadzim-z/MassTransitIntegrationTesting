@@ -15,9 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Publishers", "Publishers", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveMQ-PoC.Publisher", "ActiveMQ-PoC.Publisher\ActiveMQ-PoC.Publisher.csproj", "{6E118D8B-FA83-4564-926E-BF8DE2FE1DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveMQ-PoC.ConsumerB", "ActiveMQ-PoC.ConsumerB\ActiveMQ-PoC.ConsumerB.csproj", "{5A29D03A-9E2D-40D0-8B39-B93CCE7D14C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveMQ-PoC.ConsumerB", "ActiveMQ-PoC.ConsumerB\ActiveMQ-PoC.ConsumerB.csproj", "{5A29D03A-9E2D-40D0-8B39-B93CCE7D14C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveMQ-PoC.WebApp", "ActiveMQ-PoC.WebApp\ActiveMQ-PoC.WebApp.csproj", "{8F2B84D0-B564-40F9-83CE-918D19BAA559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActiveMQ-PoC.WebApp", "ActiveMQ-PoC.WebApp\ActiveMQ-PoC.WebApp.csproj", "{8F2B84D0-B564-40F9-83CE-918D19BAA559}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{567B6991-B882-40A6-B05E-5D45C0DA826E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveMQ-PoC.IntegrationTests", "ActiveMQ-PoC.IntegrationTests\ActiveMQ-PoC.IntegrationTests.csproj", "{1179A95D-620A-4D7C-A239-4807A27BED9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{8F2B84D0-B564-40F9-83CE-918D19BAA559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F2B84D0-B564-40F9-83CE-918D19BAA559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F2B84D0-B564-40F9-83CE-918D19BAA559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1179A95D-620A-4D7C-A239-4807A27BED9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1179A95D-620A-4D7C-A239-4807A27BED9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1179A95D-620A-4D7C-A239-4807A27BED9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1179A95D-620A-4D7C-A239-4807A27BED9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{6E118D8B-FA83-4564-926E-BF8DE2FE1DBE} = {E54CAC22-B993-4D56-AEFF-B59C4251BE34}
 		{5A29D03A-9E2D-40D0-8B39-B93CCE7D14C1} = {E850C4AA-DB7C-4CBB-AB45-1A6B8845372E}
 		{8F2B84D0-B564-40F9-83CE-918D19BAA559} = {E54CAC22-B993-4D56-AEFF-B59C4251BE34}
+		{1179A95D-620A-4D7C-A239-4807A27BED9C} = {567B6991-B882-40A6-B05E-5D45C0DA826E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F15DD854-D252-42B6-8CEC-FAC282C98991}
