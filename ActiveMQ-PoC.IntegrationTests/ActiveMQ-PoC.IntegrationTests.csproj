@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActiveMQ-PoC.ConsumerA\ActiveMQ-PoC.ConsumerA.csproj" />
+    <ProjectReference Include="..\ActiveMQ-PoC.WebApp\ActiveMQ-PoC.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

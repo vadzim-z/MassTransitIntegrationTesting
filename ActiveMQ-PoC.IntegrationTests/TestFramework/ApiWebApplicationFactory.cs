@@ -1,16 +1,18 @@
-﻿using MassTransit;
-using Microsoft.AspNetCore.Hosting;
+﻿using ActiveMQ_PoC.WebApp.Consumers;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ActiveMQ_PoC.IntegrationTests.TestFramework;
 
-public class ApiWebApplicationFactory : WebApplicationFactory<Program>
+public class ApiWebApplicationFactory
 {
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder.ConfigureAppConfiguration(config => { });
-        builder.ConfigureTestServices(services => { });
-        builder.ConfigureServices(svcs => svcs.AddMassTransitTestHarness());
-    }
+    public WebApplicationFactory<Program> WebApplicationFactory
+        => new WebApplicationFactory<Program>()
+            .WithWebHostBuilder(b => b.ConfigureServices(services
+                => RegisterServices((ServiceCollection)services)));
+
+    private void RegisterServices(ServiceCollection services)
+        => services.AddMassTransitTestHarness(cfg => 
+            cfg.AddConsumer<GetTransportOrderStatusConsumer>());
 }

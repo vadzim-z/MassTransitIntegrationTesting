@@ -1,3 +1,4 @@
+using ActiveMQ_PoC.WebApp.Consumers;
 using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumersFromNamespaceContaining<GetTransportOrderStatusConsumer>();
+
     x.UsingActiveMq((context, cfg) =>
     {
         cfg.Host("localhost", 61616, h =>
@@ -18,6 +21,7 @@ builder.Services.AddMassTransit(x =>
             h.Username("admin");
             h.Password("admin");
         });
+        cfg.ConfigureEndpoints(context);
     });
 });
 
