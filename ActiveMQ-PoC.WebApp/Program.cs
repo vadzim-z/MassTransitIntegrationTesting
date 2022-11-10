@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumersFromNamespaceContaining<GetTransportOrderStatusConsumer>();
+    x.AddConsumersFromNamespaceContaining<GetStatusConsumer>();
 
     x.UsingActiveMq((context, cfg) =>
     {

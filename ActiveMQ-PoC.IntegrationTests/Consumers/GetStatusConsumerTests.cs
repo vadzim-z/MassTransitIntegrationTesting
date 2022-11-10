@@ -9,11 +9,11 @@ using ActiveMQ_PoC.Shared.Interfaces.Requests;
 
 namespace ActiveMQ_PoC.IntegrationTests.Consumers;
 
-public class GetTransportOrderStatusConsumerTests : IClassFixture<ApiWebApplicationFactory>
+public class GetStatusConsumerTests : IClassFixture<ApiWebApplicationFactory>
 {
     private readonly ApiWebApplicationFactory _fixture;
 
-    public GetTransportOrderStatusConsumerTests(ApiWebApplicationFactory fixture)
+    public GetStatusConsumerTests(ApiWebApplicationFactory fixture)
     {
         _fixture = fixture;
     }
@@ -22,35 +22,18 @@ public class GetTransportOrderStatusConsumerTests : IClassFixture<ApiWebApplicat
     public async Task Consume_StateUnderTest_ExpectedBehavior()
     {
         // Arrange
-        var faker = new Faker();
         var webApplicationFactory = _fixture.WebApplicationFactory;
         var testHarness = await StartTestHarness(webApplicationFactory.Services);
-        var transportOrderStatusRequest = new GetTransportOrderStatusRequest(NewId.NextGuid().ToString());
-        const string sendUrl = "WeatherForecast/Send";
-        //var referenceId = new { ReferenceId = NewId.NextGuid().ToString() };
-
-        //var endpointProvider = _fixture.Services.GetRequiredService<ISendEndpointProvider>();
-        //var endpoint = await endpointProvider.GetSendEndpoint(new Uri($"queue:{QueueName.ConsumerA}"));
+        var transportOrderStatusRequest = new GetStatusRequest(NewId.NextGuid().ToString());
 
         // Act
-
         SendMessage(transportOrderStatusRequest, webApplicationFactory.Services);
-        //var response = await client.PostAsync(sendUrl, JsonContent.Create(referenceId));
-        //await endpoint.Send<ITransportOrderAmendedEvent>(new
-        //{
-        //    ReferenceId = faker.Random.AlphaNumeric(10),
-        //    DatabaseId = faker.Random.Int(1, 999),
-        //    EventDateTime = faker.Date.Future(),
-        //    BlobUrl = faker.Internet.Url()
-        //});
 
         // Assert
         await AssertMessageConsumedAsync(webApplicationFactory.Services, transportOrderStatusRequest, testHarness);
-        //response.EnsureSuccessStatusCode();
-        //Assert.True(false);
     }
 
-    private static void SendMessage(IGetTransportOrderStatusRequest transportOrderStatusRequest/*string referenceId*/, IServiceProvider provider)
+    private static void SendMessage(IGetTransportOrderStatusRequest transportOrderStatusRequest, IServiceProvider provider)
     {
         var requestClient = provider.GetRequiredService<IBus>().CreateRequestClient<IGetTransportOrderStatusRequest>();
         requestClient.GetResponse<IGetTransportOrderStatusRequest>(transportOrderStatusRequest);
@@ -75,7 +58,7 @@ public class GetTransportOrderStatusConsumerTests : IClassFixture<ApiWebApplicat
         => await testHarness.Consumed.Any<IGetTransportOrderStatusRequest>(x => IsMessageReceived(x, transportOrderStatusRequest));
 
     private static async Task<bool> IsMessageConsumedByConsumer(IServiceProvider serviceProvider, IGetTransportOrderStatusRequest transportOrderStatusRequest)
-        => await serviceProvider.GetRequiredService<IConsumerTestHarness<GetTransportOrderStatusConsumer>>()
+        => await serviceProvider.GetRequiredService<IConsumerTestHarness<GetStatusConsumer>>()
             .Consumed.Any<IGetTransportOrderStatusRequest>(x => IsMessageReceived(x, transportOrderStatusRequest));
 
     private static bool IsMessageReceived(IReceivedMessage<IGetTransportOrderStatusRequest> receivedMessages, IGetTransportOrderStatusRequest expectedMessage)

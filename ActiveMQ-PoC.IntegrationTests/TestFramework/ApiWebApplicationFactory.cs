@@ -14,5 +14,5 @@ public class ApiWebApplicationFactory
 
     private void RegisterServices(ServiceCollection services)
         => services.AddMassTransitTestHarness(cfg => 
-            cfg.AddConsumer<GetTransportOrderStatusConsumer>());
+            cfg.AddConsumer<GetStatusConsumer>());
 }

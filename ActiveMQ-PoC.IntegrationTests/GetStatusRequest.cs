@@ -1,11 +1,11 @@
 ﻿using ActiveMQ_PoC.Shared.Interfaces.Requests;
 
 namespace ActiveMQ_PoC.IntegrationTests;
-internal class GetTransportOrderStatusRequest : IGetTransportOrderStatusRequest
+internal class GetStatusRequest : IGetTransportOrderStatusRequest
 {
     public string ReferenceId { get; }
 
-    public GetTransportOrderStatusRequest(string referenceId)
+    public GetStatusRequest(string referenceId)
     {
         ReferenceId = referenceId;
     }
