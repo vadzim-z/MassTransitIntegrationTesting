@@ -1,5 +1,10 @@
+using ActiveMQ_PoC.Shared.Interfaces.Repositories;
 using ActiveMQ_PoC.WebApp.Consumers;
+using ActiveMQ_PoC.WebApp.Db;
+using ActiveMQ_PoC.WebApp.Db.Repositories;
+using Finance.Common.Database.Relational.Extensions;
 using MassTransit;
+using SqlKata.Compilers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +29,10 @@ builder.Services.AddMassTransit(x =>
         cfg.ConfigureEndpoints(context);
     });
 });
+
+builder.Services.AddScopedPersistence<TransportOrderContext>();
+builder.Services.AddQueryExecution<TransportOrderContext, PostgresCompiler>();
+builder.Services.AddScoped<ITransportOrderRepository, TransportOrderRepository>();
 
 var app = builder.Build();
 

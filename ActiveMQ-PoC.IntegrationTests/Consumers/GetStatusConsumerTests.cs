@@ -6,6 +6,7 @@ using Bogus;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using ActiveMQ_PoC.Shared.Interfaces.Requests;
+using FluentAssertions;
 
 namespace ActiveMQ_PoC.IntegrationTests.Consumers;
 

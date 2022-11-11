@@ -13,6 +13,8 @@ public class ApiWebApplicationFactory
                 => RegisterServices((ServiceCollection)services)));
 
     private void RegisterServices(ServiceCollection services)
-        => services.AddMassTransitTestHarness(cfg => 
-            cfg.AddConsumer<GetStatusConsumer>());
+        => services.AddMassTransitTestHarness(cfg =>
+        {
+            cfg.AddConsumer<GetStatusConsumer>();
+        });
 }
