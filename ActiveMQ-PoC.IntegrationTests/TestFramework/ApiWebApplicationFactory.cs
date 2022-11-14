@@ -1,12 +1,18 @@
-﻿using ActiveMQ_PoC.WebApp.Consumers;
+﻿using ActiveMQ_PoC.Shared.Interfaces.Repositories;
+using ActiveMQ_PoC.WebApp.Consumers;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 
 namespace ActiveMQ_PoC.IntegrationTests.TestFramework;
 
 public class ApiWebApplicationFactory
 {
+    public Mock<ITransportOrderRepository> MockTransportOrderRepository { get; private set; }
+
+    public ApiWebApplicationFactory() => MockTransportOrderRepository = new Mock<ITransportOrderRepository>();
+
     public WebApplicationFactory<Program> WebApplicationFactory
         => new WebApplicationFactory<Program>()
             .WithWebHostBuilder(b => b.ConfigureServices(services
@@ -16,5 +22,7 @@ public class ApiWebApplicationFactory
         => services.AddMassTransitTestHarness(cfg =>
         {
             cfg.AddConsumer<GetStatusConsumer>();
+            cfg.AddConsumer<UpsertTransportOrderConsumer>();
+            //cfg.AddSingleton(MockTransportOrderRepository.Object);
         });
 }

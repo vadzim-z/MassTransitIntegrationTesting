@@ -1,7 +1,6 @@
 ﻿using ActiveMQ_PoC.Shared.Interfaces.Requests;
 using Bogus;
 using MassTransit;
-using System.Text.Json;
 using ActiveMQ_PoC.Shared.Entities;
 using ActiveMQ_PoC.Shared.Interfaces.Repositories;
 
@@ -26,16 +25,8 @@ public class GetStatusConsumer : IConsumer<IGetTransportOrderStatusRequest>
             BlobUrl = faker.Internet.Url()
         };
 
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine(
-            $"\nReceived IGetTransportOrderStatusRequest request {JsonSerializer.Serialize(context.Message)}");
-
-
         var ids = await _repository.GetAllIdsAsync(CancellationToken.None);
 
         await context.RespondAsync<ITransportOrderStatusResponse>(response);
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"\nResponded with {JsonSerializer.Serialize(response)}");
     }
 }

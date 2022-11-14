@@ -15,6 +15,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScopedPersistence<TransportOrderContext>();
+builder.Services.AddQueryExecution<TransportOrderContext, PostgresCompiler>();
+builder.Services.AddScoped<ITransportOrderRepository, TransportOrderRepository>();
+
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumersFromNamespaceContaining<GetStatusConsumer>();
@@ -30,9 +34,7 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
-builder.Services.AddScopedPersistence<TransportOrderContext>();
-builder.Services.AddQueryExecution<TransportOrderContext, PostgresCompiler>();
-builder.Services.AddScoped<ITransportOrderRepository, TransportOrderRepository>();
+
 
 var app = builder.Build();
 
