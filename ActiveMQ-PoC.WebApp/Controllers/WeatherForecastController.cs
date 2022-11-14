@@ -44,9 +44,9 @@ namespace ActiveMQ_PoC.WebApp.Controllers
         }
 
         [HttpPost("Request")]
-        public async Task<ITransportOrderStatusResponse> RequestExample(string referenceId)
+        public async Task<ITransportOrderResponse> RequestExample(string referenceId)
         {
-            var result = await _requestClient.GetResponse<ITransportOrderStatusResponse>(new {ReferenceId = referenceId});
+            var result = await _requestClient.GetResponse<ITransportOrderResponse>(new {ReferenceId = referenceId});
             return result.Message;
         }
 

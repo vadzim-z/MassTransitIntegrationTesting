@@ -1,6 +1,6 @@
 ﻿namespace ActiveMQ_PoC.Shared.Interfaces.Requests;
 
-public interface ITransportOrderStatusResponse
+public interface ITransportOrderResponse
 {
     public string ReferenceId { get; }
     public int DatabaseId { get; }

@@ -16,7 +16,7 @@ public class GetTransportOrderStatusConsumer : IConsumer<IGetTransportOrderStatu
         Console.WriteLine(
             $"\nReceived IGetTransportOrderStatusRequest request {JsonSerializer.Serialize(context.Message)}");
 
-        await context.RespondAsync<ITransportOrderStatusResponse>(response);
+        await context.RespondAsync<ITransportOrderResponse>(response);
 
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"\nResponded with {JsonSerializer.Serialize(response)}");

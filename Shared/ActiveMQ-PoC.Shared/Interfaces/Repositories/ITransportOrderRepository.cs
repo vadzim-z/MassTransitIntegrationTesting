@@ -4,5 +4,5 @@ namespace ActiveMQ_PoC.Shared.Interfaces.Repositories;
 public interface ITransportOrderRepository
 {
     Task<int> UpsertAsync(TransportOrder transportOrder, CancellationToken cancellationToken);
-    Task<IEnumerable<TransportOrder>> GetAllIdsAsync(CancellationToken cancellationToken);
+    Task<IEnumerable<TransportOrder>> GetAllAsync(CancellationToken cancellationToken);
 }

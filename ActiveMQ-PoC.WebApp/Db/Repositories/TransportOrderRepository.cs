@@ -40,6 +40,6 @@ public class TransportOrderRepository : AsyncRepository<TransportOrder, Transpor
         return id;
     }
 
-    public async Task<IEnumerable<TransportOrder>> GetAllIdsAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<TransportOrder>> GetAllAsync(CancellationToken cancellationToken)
         => await _uow.DbContext.TransportOrders.ToListAsync(cancellationToken);
 }

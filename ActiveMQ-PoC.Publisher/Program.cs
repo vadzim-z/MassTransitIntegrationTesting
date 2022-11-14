@@ -57,7 +57,7 @@ public class Program
     {
         var request = new {ReferenceId = new Faker().Random.AlphaNumeric(10)};
         var client = _busControl.CreateRequestClient<IGetTransportOrderStatusRequest>();
-        var response = await client.GetResponse<ITransportOrderStatusResponse>(request);
+        var response = await client.GetResponse<ITransportOrderResponse>(request);
 
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"\nRequested with : {JsonSerializer.Serialize(request)}");
